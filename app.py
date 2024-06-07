@@ -20,16 +20,27 @@ aqi_labels = {
 def get_coordinates(location):
     geolocator = geopy.geocoders.Nominatim(user_agent="air_quality_app")
     location = geolocator.geocode(location)
+    if location is None:
+        raise ValueError("Location not found")
     return location.latitude, location.longitude
 
 # Function to get AQI value from OpenWeatherMap API
 def get_aqi(latitude, longitude):
     api_key = os.getenv('OPENWEATHER_API_KEY')
+    if not api_key:
+        raise ValueError("API key not found. Set the OPENWEATHER_API_KEY environment variable.")
     url = f"http://api.openweathermap.org/data/2.5/air_pollution?lat={latitude}&lon={longitude}&appid={api_key}"
     response = requests.get(url)
     data = response.json()
-    aqi_value = data['list'][0]['main']['aqi']
-    return aqi_value
+
+    # Debug: print the API response
+    print("API Response:", data)
+
+    if 'list' in data and len(data['list']) > 0:
+        aqi_value = data['list'][0]['main']['aqi']
+        return aqi_value
+    else:
+        raise ValueError("AQI data not found in API response")
 
 # Function to make prediction
 def predict_air_quality(location):
@@ -41,5 +52,8 @@ def predict_air_quality(location):
 
 if __name__ == "__main__":
     location = input("Enter location: ")
-    result = predict_air_quality(location)
-    print(result)
+    try:
+        result = predict_air_quality(location)
+        print(result)
+    except Exception as e:
+        print("Error:", e)
