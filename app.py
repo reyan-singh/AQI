@@ -47,8 +47,11 @@ def get_aqi(latitude, longitude):
 def predict_air_quality(location):
     latitude, longitude = get_coordinates(location)
     aqi_value = get_aqi(latitude, longitude)
-    # Create a DataFrame with feature names
-    input_data = pd.DataFrame([[aqi_value, aqi_value, aqi_value, aqi_value]], columns=['feature1', 'feature2', 'feature3', 'feature4'])
+    # Create a DataFrame with the correct feature names used during model training
+    input_data = pd.DataFrame(
+        [[aqi_value, aqi_value, aqi_value, aqi_value]], 
+        columns=['CO AQI Category', 'NO2 AQI Category', 'Ozone AQI Category', 'PM2.5 AQI Category']
+    )
     prediction = model.predict(input_data)
     label_string = aqi_labels[prediction[0]]
     return f"{location} air quality is currently '{label_string}'"
