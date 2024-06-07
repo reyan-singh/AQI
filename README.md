@@ -25,7 +25,7 @@ The `app.py` file is used on Hugging Face for inference with Gradio. The program
        4       1.00      1.00      1.00       333
        5       0.93      1.00      0.97        57
 
-accuracy                         1.00      4607
+            accuracy               1.00      4607
 
 
 - **Class Labels**:
