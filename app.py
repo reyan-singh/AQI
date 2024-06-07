@@ -2,6 +2,7 @@ import requests
 import geopy
 import joblib
 import os
+import pandas as pd
 
 # Load the trained model
 model = joblib.load('hackathonrf.joblib')
@@ -46,7 +47,9 @@ def get_aqi(latitude, longitude):
 def predict_air_quality(location):
     latitude, longitude = get_coordinates(location)
     aqi_value = get_aqi(latitude, longitude)
-    prediction = model.predict([[aqi_value, aqi_value, aqi_value, aqi_value]])
+    # Create a DataFrame with feature names
+    input_data = pd.DataFrame([[aqi_value, aqi_value, aqi_value, aqi_value]], columns=['feature1', 'feature2', 'feature3', 'feature4'])
+    prediction = model.predict(input_data)
     label_string = aqi_labels[prediction[0]]
     return f"{location} air quality is currently '{label_string}'"
 
