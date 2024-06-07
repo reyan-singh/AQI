@@ -2,7 +2,7 @@
 
 This repository contains a random forest model for predicting air quality based on AQI (Air Quality Index) values of various pollutants. The model is trained on a dataset sourced from Kaggle's Global Air Pollution Dataset.
 
-The `app.py` file is used on Hugging Face for inference with Gradio. The program receives the location input by the user, converts it to coordinates, retrieves the AQI using Open Meteo, and prints the location's AQI along with the current air quality condition.
+The `app.py` file is used on Hugging Face for inference with Gradio. The program receives the location input by the user, converts it to coordinates, retrieves the AQI using Open Weather Map, and prints the location's AQI along with the current air quality condition.
 
 ## Dataset
 
