@@ -2,7 +2,37 @@
 
 This repository contains a random forest model for predicting air quality based on AQI (Air Quality Index) values of various pollutants. The model is trained on a dataset sourced from Kaggle's Global Air Pollution Dataset.
 
-The `app.py` file is used on Hugging Face for inference with Gradio. The program receives the location input by the user, converts it to coordinates, retrieves the AQI using Open Weather Map, and prints the location's AQI along with the current air quality condition.
+## How It Works
+
+The `app.py` file receives a location input from the user, converts it to coordinates, retrieves the AQI using OpenWeatherMap, and prints the location's AQI along with the current air quality condition.
+
+## Instructions
+
+### Setup
+
+1. **Clone the Repository**:
+    ```bash
+    git clone <repository-url>
+    cd <repository-directory>
+    ```
+
+2. **Install Dependencies**:
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+3. **Set Up OpenWeather API Key**:
+    - Create an account on [OpenWeather](https://home.openweathermap.org/users/sign_up).
+    - Obtain your API key from OpenWeather.
+    - Set the API key as an environment variable:
+        ```bash
+        export OPENWEATHER_API_KEY='your_api_key_here'
+        ```
+
+4. **Run the Application**:
+    ```bash
+    python app.py
+    ```
 
 ## Dataset
 
@@ -28,6 +58,7 @@ The `app.py` file is used on Hugging Face for inference with Gradio. The program
             accuracy               1.00      4607
 
 
+
 - **Class Labels**:
   - 0: Good
   - 1: Moderate
@@ -35,24 +66,6 @@ The `app.py` file is used on Hugging Face for inference with Gradio. The program
   - 3: Unhealthy
   - 4: Very Unhealthy
   - 5: Hazardous
-
-## How to Use
-
-1. **Clone the Repository**:
-  ```bash
-  git clone <repository-url>
-  cd <repository-directory>
-  ```
-
-2. **Install Dependencies**:
-  ```bash
-  pip install -r requirements.txt
-  ```
-
-3. **Run the Application**:
-  ```bash
-  python app.py
-  ```
 
 ## License
 
