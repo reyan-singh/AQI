@@ -45,4 +45,4 @@ iface = gr.Interface(fn=predict_air_quality,
                       outputs="text", 
                       title="Air Quality Prediction",
                       description="Enter location:")
-iface.launch()
+iface.launch(share=True)
