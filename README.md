@@ -1,6 +1,6 @@
 # Air Quality Prediction Model
 
-This repository contains a machine learning model for predicting air quality based on AQI (Air Quality Index) values of various pollutants. The model is trained on a dataset sourced from Kaggle's Global Air Pollution Dataset.
+This repository contains a random forest model for predicting air quality based on AQI (Air Quality Index) values of various pollutants. The model is trained on a dataset sourced from Kaggle's Global Air Pollution Dataset.
 
 ## Dataset
 
