@@ -1,7 +1,7 @@
 import requests
 import geopy
 import joblib
-import gradio as gr
+import os
 
 # Load the trained model
 model = joblib.load('hackathonrf.joblib')
@@ -24,7 +24,7 @@ def get_coordinates(location):
 
 # Function to get AQI value from OpenWeatherMap API
 def get_aqi(latitude, longitude):
-    api_key = "78b94879cbb50e02397e93687aa24adc"  # Hidden API Key
+    api_key = os.getenv('OPENWEATHER_API_KEY')
     url = f"http://api.openweathermap.org/data/2.5/air_pollution?lat={latitude}&lon={longitude}&appid={api_key}"
     response = requests.get(url)
     data = response.json()
@@ -39,10 +39,7 @@ def predict_air_quality(location):
     label_string = aqi_labels[prediction[0]]
     return f"{location} air quality is currently '{label_string}'"
 
-# Create Gradio interface
-iface = gr.Interface(fn=predict_air_quality, 
-                      inputs=["text"], 
-                      outputs="text", 
-                      title="Air Quality Prediction",
-                      description="Enter location:")
-iface.launch(share=True)
+if __name__ == "__main__":
+    location = input("Enter location: ")
+    result = predict_air_quality(location)
+    print(result)
