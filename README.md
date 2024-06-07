@@ -12,7 +12,7 @@ The `app.py` file receives a location input from the user, converts it to coordi
 
 1. **Create an OpenWeather Account**:
     - Create an account on [OpenWeather](https://home.openweathermap.org/users/sign_up).
-    - Obtain your API key from OpenWeather.
+    - Obtain your free API key from OpenWeather.
 
 2. **Clone the Repository**:
     ```bash
@@ -26,9 +26,17 @@ The `app.py` file receives a location input from the user, converts it to coordi
     ```
 
 4. **Set Up OpenWeather API Key**:
-    - Set the API key as an environment variable:
+    - **On Unix-based systems (Linux, macOS)**:
         ```bash
         export OPENWEATHER_API_KEY='your_api_key_here'
+        ```
+    - **On Windows (Command Prompt)**:
+        ```cmd
+        set OPENWEATHER_API_KEY=your_api_key_here
+        ```
+    - **On Windows (PowerShell)**:
+        ```powershell
+        $env:OPENWEATHER_API_KEY = "your_api_key_here"
         ```
 
 5. **Run the Application**:
