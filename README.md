@@ -12,7 +12,7 @@ The `app.py` file receives a location input from the user, converts it to coordi
 
 1. **Create an OpenWeather Account**:
     - Create an account on [OpenWeather](https://home.openweathermap.org/users/sign_up).
-    - Obtain your API key from OpenWeather.
+    - Obtain your free API key from OpenWeather.
 
 2. **Clone the Repository**:
     ```bash
