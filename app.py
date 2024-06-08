@@ -38,18 +38,19 @@ def get_aqi(latitude, longitude):
     print("API Response:", data)
 
     if 'list' in data and len(data['list']) > 0:
-        aqi_value = data['list'][0]['main']['aqi']
-        return aqi_value
+        components = data['list'][0]['components']
+        aqi_values = [components['co'], components['no2'], components['o3'], components['pm2_5']]
+        return aqi_values
     else:
         raise ValueError("AQI data not found in API response")
 
 # Function to make prediction
 def predict_air_quality(location):
     latitude, longitude = get_coordinates(location)
-    aqi_value = get_aqi(latitude, longitude)
+    aqi_values = get_aqi(latitude, longitude)
     # Create a DataFrame with the correct feature names used during model training
     input_data = pd.DataFrame(
-        [[aqi_value, aqi_value, aqi_value, aqi_value]], 
+        [aqi_values], 
         columns=['CO AQI Category', 'NO2 AQI Category', 'Ozone AQI Category', 'PM2.5 AQI Category']
     )
     prediction = model.predict(input_data)
