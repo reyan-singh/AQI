@@ -1,6 +1,6 @@
 # Air Quality Prediction Model
 
-This repository contains a random forest model for predicting air quality based on AQI (Air Quality Index) values of various pollutants. The model is trained on a dataset sourced from Kaggle's Global Air Pollution Dataset.
+This repository provides a script to determine the air quality based on AQI (Air Quality Index) values of various pollutants. The AQI data is retrieved using the OpenWeatherMap API.
 
 ## How It Works
 
@@ -44,39 +44,6 @@ The `app.py` file receives a location input from the user, converts it to coordi
     python app.py
     ```
 
-## Dataset
-
-- **Dataset Name**: Global Air Pollution Dataset
-- **Dataset Source**: [Kaggle](https://www.kaggle.com/datasets/hasibalmuzdadid/global-air-pollution-dataset/)
-- **Dataset Size**: 23,463 rows, 12 columns
-
-## Model Performance
-
-- **Model Name**: hackathonrf.joblib
-- **Accuracy**: 99.91%
-- **Classification Report**:
-
-          precision    recall  f1-score   support
-
-       0       1.00      1.00      1.00      1926
-       1       1.00      0.91      0.95        45
-       2       1.00      1.00      1.00      1841
-       3       1.00      1.00      1.00       405
-       4       1.00      1.00      1.00       333
-       5       0.93      1.00      0.97        57
-
-            accuracy               1.00      4607
-
-
-
-- **Class Labels**:
-  - 0: Good
-  - 1: Moderate
-  - 2: Unhealthy for Sensitive Groups
-  - 3: Unhealthy
-  - 4: Very Unhealthy
-  - 5: Hazardous
-
 ## USA Air Quality Index Levels
 
 Below is a description of USA Air Quality Index levels:
@@ -91,8 +58,10 @@ Below is a description of USA Air Quality Index levels:
 | 301 to 500 | Hazardous                             | Maroon |
 | 501 to 1000| Very Hazardous                        | Brown  |
 
+## Contributing
+
+We welcome contributions! Please see the [contributing guidelines](CONTRIBUTING.md) for more details.
+
 ## License
 
-This project is licensed under the Apache 2.0 - see the [LICENSE](https://github.com/TLeonidas/TLeonidas-HCC-CSA-April24-Hackathon/blob/main/LICENSE) file for details.
-
-
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
