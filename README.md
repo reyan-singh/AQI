@@ -12,7 +12,7 @@ The `app.py` file receives a location input from the user, converts it to coordi
 
 1. **Create an OpenWeather Account**:
     - Create an account on [OpenWeather](https://home.openweathermap.org/users/sign_up).
-    - Obtain your free API key from OpenWeather.
+    - Obtain your API key from OpenWeather.
 
 2. **Clone the Repository**:
     ```bash
@@ -76,6 +76,20 @@ The `app.py` file receives a location input from the user, converts it to coordi
   - 3: Unhealthy
   - 4: Very Unhealthy
   - 5: Hazardous
+
+## USA Air Quality Index Levels
+
+Below is a description of USA Air Quality Index levels:
+
+| AQI        | Level of Health Concern               | Color  |
+|------------|---------------------------------------|--------|
+| 0 to 50    | Good                                  | Green  |
+| 51 to 100  | Moderate                              | Yellow |
+| 101 to 150 | Unhealthy for Sensitive Groups        | Orange |
+| 151 to 200 | Unhealthy                             | Red    |
+| 201 to 300 | Very Unhealthy                        | Purple |
+| 301 to 500 | Hazardous                             | Maroon |
+| 501 to 1000| Very Hazardous                        | Brown  |
 
 ## License
 
