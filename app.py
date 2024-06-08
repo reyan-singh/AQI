@@ -1,11 +1,6 @@
 import requests
 import geopy
-import joblib
 import os
-import pandas as pd
-
-# Load the trained model
-model = joblib.load('hackathonrf.joblib')
 
 # Define AQI category labels
 aqi_labels = {
@@ -38,29 +33,21 @@ def get_aqi(latitude, longitude):
     print("API Response:", data)
 
     if 'list' in data and len(data['list']) > 0:
-        components = data['list'][0]['components']
-        aqi_values = [components['co'], components['no2'], components['o3'], components['pm2_5']]
-        return aqi_values
+        aqi_value = data['list'][0]['main']['aqi']
+        return aqi_value
     else:
         raise ValueError("AQI data not found in API response")
 
-# Function to make prediction
-def predict_air_quality(location):
-    latitude, longitude = get_coordinates(location)
-    aqi_values = get_aqi(latitude, longitude)
-    # Create a DataFrame with the correct feature names used during model training
-    input_data = pd.DataFrame(
-        [aqi_values], 
-        columns=['CO AQI Category', 'NO2 AQI Category', 'Ozone AQI Category', 'PM2.5 AQI Category']
-    )
-    prediction = model.predict(input_data)
-    label_string = aqi_labels[prediction[0]]
-    return f"{location} air quality is currently '{label_string}'"
+# Function to determine air quality category
+def get_aqi_category(aqi_value):
+    return aqi_labels.get(aqi_value, 'unknown')
 
 if __name__ == "__main__":
     location = input("Enter location: ")
     try:
-        result = predict_air_quality(location)
-        print(result)
+        latitude, longitude = get_coordinates(location)
+        aqi_value = get_aqi(latitude, longitude)
+        aqi_category = get_aqi_category(aqi_value)
+        print(f"{location} air quality is currently '{aqi_category}'")
     except Exception as e:
         print("Error:", e)
