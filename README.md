@@ -57,11 +57,3 @@ Below is a description of USA Air Quality Index levels:
 | 201 to 300 | Very Unhealthy                        | Purple |
 | 301 to 500 | Hazardous                             | Maroon |
 | 501 to 1000| Very Hazardous                        | Brown  |
-
-## Contributing
-
-We welcome contributions! Please see the [contributing guidelines](CONTRIBUTING.md) for more details.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
