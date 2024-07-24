@@ -1,6 +1,7 @@
 import requests
 import geopy
 import os
+import json
 
 # Define AQI category labels
 aqi_labels = {
@@ -34,12 +35,8 @@ def get_aqi(latitude, longitude):
     response = requests.get(url)
     data = response.json()
 
-    # Debug: print the API response
-    print("API Response:", data)
-
     if 'list' in data and len(data['list']) > 0:
-        aqi_value = data['list'][0]['main']['aqi']
-        return aqi_value
+        return json.dumps(data)
     else:
         raise ValueError("AQI data not found in API response")
 
@@ -48,16 +45,33 @@ def get_aqi_category(aqi_value):
     return aqi_labels.get(aqi_value, 'unknown')
 
 if __name__ == "__main__":
-    location = input("Enter location: ")
 
+
+    location = input("Enter location: ")
     try:
         latitude, longitude =0,0
         if location=="":
             latitude, longitude = get_lanlat()
         else:
             latitude, longitude = get_coordinates(location)
-        aqi_value = get_aqi(latitude, longitude)
-        aqi_category = get_aqi_category(aqi_value)
-        print(f"{location} air quality is currently '{aqi_category}'")
+        aqi_value =  get_aqi(latitude, longitude)
+
+        data = aqi_value.replace("'", '"')
+
+        adata = json.loads(data)
+
+        lon = adata['coord']['lon']
+        lat = adata['coord']['lat']
+        aqi = adata['list'][0]['main']['aqi']
+        co = adata['list'][0]['components']['co']
+        no = adata['list'][0]['components']['no']
+        no2 = adata['list'][0]['components']['no2']
+        o3 = adata['list'][0]['components']['o3']
+        so2 = adata['list'][0]['components']['so2']
+        pm2_5 = adata['list'][0]['components']['pm2_5']
+        pm10 = adata['list'][0]['components']['pm10']
+        nh3 = adata['list'][0]['components']['nh3']
+        dt = adata['list'][0]['dt']
+        print(lon,aqi,so2,lon,pm10,nh3)
     except Exception as e:
         print("Error:", e)
