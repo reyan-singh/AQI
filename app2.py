@@ -14,9 +14,9 @@ aqi_labels = {
 }
 
 def get_lanlat():
-    lan = input("Enter Langitude: ")
     lat = input("Enter Latitude: ")
-    return lan, lat
+    lan = input("Enter Langitude: ")
+    return lat, lan
 
 # Function to get latitude and longitude from location name
 def get_coordinates(location):
@@ -54,10 +54,9 @@ if __name__ == "__main__":
             latitude, longitude = get_lanlat()
         else:
             latitude, longitude = get_coordinates(location)
+        print("lat/lan", latitude, longitude)
         aqi_value =  get_aqi(latitude, longitude)
-
         data = aqi_value.replace("'", '"')
-
         adata = json.loads(data)
 
         lon = adata['coord']['lon']
